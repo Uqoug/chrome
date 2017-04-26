@@ -1,12 +1,11 @@
 {
     "manifest_version": 2,
-    "name": "我的时钟",
+    "name": "wheelbarrow",
     "version": "1.0",
-    "description": "我的第一个Chrome扩展",
+    "description": "wheelbarrow",
     "icons": {
         "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+        "48": "images/icon48.png"
     },
     "browser_action": {
         "default_icon": {
@@ -15,5 +14,11 @@
         },
         "default_title": "我的时钟",
         "default_popup": "popup.html"
-    }
+    },
+    "content_scripts": [{  
+        "matches": ["http://*/*","https://*/*"],   
+        "js": ["js/jquery-3.1.1.min.js", "js/moment.min.js"],   
+        "run_at": "document_start",  
+        "all_frames": true   
+    }] 
 }

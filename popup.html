@@ -7,64 +7,95 @@
 		margin: 0px;
 		padding: 0px;
 	}
-	#clock {
-		position: relative;
-		width: 500px;
-		height: 500px;
-		border-radius: 50%;
-		border: 1px solid #000;
+	body {
+	  background: #F5F1E9;
+	  transition: all 0.5s ease; 
+	  width: 300px;
+	  height: 500px;
 	}
-	.bar {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		background-color: #000;
-		-webkit-transform-origin: 50% 100%;
-		-moz-transform-origin: 50% 100%;
-		-o-transform-origin: 50% 100%;
-		-ms-transform-origin: 50% 100%;
-		transform-origin: 50% 100%;
-	}
-	.hour {
-		width: 8px;
-		height: 120px;
-		margin-top: -120px;
-	}
-	.minute {
-		width: 6px;
-		height: 150px;
-		margin-top: -150px;
-	}
-	.second {
-		width: 4px;
-		height: 180px;
-		margin-top: -180px;
-	}
+
+	#buttons {
+	  position: absolute;
+	  width: 50px;
+	  margin: 2% 0 0 2%; }
+
+	#buttons a {
+	  font-size: 12px;
+	  display: block;
+	  padding: 5px;
+	  background: rgba(0, 0, 0, 0.1);
+	  color: rgba(0, 0, 0, 0.6);
+	  margin-bottom: 5px;
+	  text-decoration: none;
+	  border: solid 1px rgba(0, 0, 0, 0.1);
+	  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.7);
+	  transition: all 0.5s ease; }
+
+	#buttons a:hover,
+	#buttons a.selected {
+	  background: rgba(0, 0, 0, 0.3); }
+
+	#buttons a.selected {
+	  cursor: default; }
+
+	#wheel {
+	  margin: 0 0;
+	  display: block;
+	  width: 50px;
+	  height: 50px;
+	  background: url("images/wheel.png") no-repeat;
+	  background-size: cover;
+	  border-radius: 196px;
+	  overflow: hidden;
+	  box-shadow: 0 0 7px #333; }
+	  #wheel.speed30 {
+	    animation-name: rotate_wheel;
+	    animation-iteration-count: infinite;
+	    animation-play-state: running;
+	    animation-timing-function: linear;
+	    animation-duration: 2.1s; }
+	  #wheel.speed70 {
+	    animation-name: rotate_wheel;
+	    animation-iteration-count: infinite;
+	    animation-play-state: running;
+	    animation-timing-function: linear;
+	    animation-duration: 0.9s; }
+	  #wheel.speed100 {
+	    animation-name: rotate_wheel;
+	    animation-iteration-count: infinite;
+	    animation-play-state: running;
+	    animation-timing-function: linear;
+	    animation-duration: 0.51s; }
+	  #wheel.speed180 {
+	    animation-name: rotate_wheel;
+	    animation-iteration-count: infinite;
+	    animation-play-state: running;
+	    animation-timing-function: linear;
+	    animation-duration: 0.06s; }
+
+	@keyframes rotate_wheel {
+	  from {
+	    transform: rotate(0deg); }
+	  to {
+	    transform: rotate(360deg); } }
+
+	/*# sourceMappingURL=style.css.map */
+
 	</style>
 	
 </head>
 <body>
-	<div id="clock">
-		<div class="bar hour"></div>
-		<div class="bar minute"></div>
-		<div class="bar second"></div>
+	<span id="wheel"></span>
+	<textarea name="" id="" cols="30" rows="10"></textarea>
+	<div id="buttons">
+	  <a href="javascript:;" data-speed="speed30" data-bg="#FFE5BD">30 Km/h</a>
+	  <a href="javascript:;" data-speed="speed70" data-bg="#FFD490">70 Km/h</a>
+	  <a href="javascript:;" data-speed="speed100" data-bg="#FFC871">100 Km/h</a>
+	  <a href="javascript:;" data-speed="speed180" data-bg="#FFBB4D">180 Km/h</a>
 	</div>
+	<a href="#" class="button">CLICK</a>
+	
 	<script src='js/jquery-3.1.1.min.js'></script>
-	<script src='js/moment.min.js'></script>
-	<script>
-		function clock(){ 
-		  var t = moment(),
-		      a = t.minutes() * 6,
-		      o = t.hours() % 12 / 12 * 360 + (a / 12);
-		      s = t.second() * 6,
-		  $(".hour").css("transform", "rotate(" + o + "deg)");
-		  $(".minute").css("transform", "rotate(" + a + "deg)");
-		  $(".second").css("transform", "rotate(" + s + "deg)");
-		}
-		function refreshClock() {
-		  clock(), setTimeout(refreshClock, 100);
-		}
-		refreshClock();
-	</script>
+	<script src='js/main.js'></script>
 </body>
 </html>
