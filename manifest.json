@@ -12,13 +12,17 @@
             "19": "images/icon19.png",
             "38": "images/icon38.png"
         },
-        "default_title": "我的时钟",
+        "default_title": "wheelbarrow",
         "default_popup": "popup.html"
     },
-    "content_scripts": [{  
-        "matches": ["http://*/*","https://*/*"],   
-        "js": ["js/jquery-3.1.1.min.js", "js/moment.min.js"],   
-        "run_at": "document_start",  
-        "all_frames": true   
-    }] 
+    "permissions": [
+        "activeTab",
+        "https://ajax.googleapis.com/"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["https://www.douyu.com/"],
+            "js": ["js/jquery-3.1.1.min.js"]  
+        }
+    ]
 }

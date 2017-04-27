@@ -11,5 +11,32 @@ $('#buttons a').on('click', function(){
       return speed;
     });
   }, 5)
-  $('body').css('background', color);
 })
+
+
+$('#go').on('click', function(){
+  chrome.tabs.executeScript(null, {
+      code: '$(".b-btn").click()',
+      runAt: 'document_start'
+  });
+})
+
+var rangeSlider = function(){
+  var slider = $('.range-slider'),
+      range = $('.range-slider__range'),
+      value = $('.range-slider__value');
+    
+  slider.each(function(){
+
+    value.each(function(){
+      var value = $(this).prev().attr('value');
+      $(this).html(value);
+    });
+
+    range.on('input', function(){
+      $(this).next(value).html(this.value);
+    });
+  });
+};
+
+rangeSlider();

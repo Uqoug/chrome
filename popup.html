@@ -3,25 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<style>
+	@import url('http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700');
 	* {
 		margin: 0px;
 		padding: 0px;
 	}
+	*, *:before, *:after {
+	  box-sizing: border-box; }
 	body {
-	  background: #F5F1E9;
 	  transition: all 0.5s ease; 
 	  width: 300px;
-	  height: 500px;
+	  height: 280px;
 	}
 
 	#buttons {
-	  position: absolute;
-	  width: 50px;
+	  position: relative;
 	  margin: 2% 0 0 2%; }
 
 	#buttons a {
 	  font-size: 12px;
-	  display: block;
+	  display: inline-block;
 	  padding: 5px;
 	  background: rgba(0, 0, 0, 0.1);
 	  color: rgba(0, 0, 0, 0.6);
@@ -39,7 +40,7 @@
 	  cursor: default; }
 
 	#wheel {
-	  margin: 0 0;
+	  margin: 10px 10px;
 	  display: block;
 	  width: 50px;
 	  height: 50px;
@@ -53,25 +54,19 @@
 	    animation-iteration-count: infinite;
 	    animation-play-state: running;
 	    animation-timing-function: linear;
-	    animation-duration: 2.1s; }
-	  #wheel.speed70 {
-	    animation-name: rotate_wheel;
-	    animation-iteration-count: infinite;
-	    animation-play-state: running;
-	    animation-timing-function: linear;
-	    animation-duration: 0.9s; }
+	    animation-duration: 2.5s; }
 	  #wheel.speed100 {
 	    animation-name: rotate_wheel;
 	    animation-iteration-count: infinite;
 	    animation-play-state: running;
 	    animation-timing-function: linear;
-	    animation-duration: 0.51s; }
+	    animation-duration: 0.95s; }
 	  #wheel.speed180 {
 	    animation-name: rotate_wheel;
 	    animation-iteration-count: infinite;
 	    animation-play-state: running;
 	    animation-timing-function: linear;
-	    animation-duration: 0.06s; }
+	    animation-duration: 0.12s; }
 
 	@keyframes rotate_wheel {
 	  from {
@@ -79,21 +74,146 @@
 	  to {
 	    transform: rotate(360deg); } }
 
-	/*# sourceMappingURL=style.css.map */
+	#go, #stop {
+		display: block;
+		position: absolute;
+		right: 10px;
+		bottom: 12px;
+		color: rgba(255, 255, 255, 1);
+		text-decoration: none;
+		background-color: rgba(219, 87, 51, 1);
+		font-weight: 700;
+		font-size: 3em;
+		font-family: 'Yanone Kaffeesatz';
+		display: block;
+		padding: 4px;
+		border-radius: 8px;
+		box-shadow: 0px 6px 0px rgba(219, 31, 5, 1),
+				    0px 6px 18px rgba(0, 0, 0, .7);
+		width: 90px;
+		text-align: center;
+		-webkit-transition: all .1s ease;
+		-moz-transition: all .1s ease;
+		transition: all .1s ease;
+	}
+	#go:active, #stop:active {
+		box-shadow: 0px 3px 0px rgba(219, 31, 5, 1),
+				    0px 3px 6px rgba(0, 0, 0, .9);
+		position: absolute;
+		right: 10px;
+		bottom: 8px;
+	}
+	#go, #go:active {
+		right: 120px;
+	}
+
+	
+	textarea {
+		width: 280px;
+		height: 80px;
+		background-color: #ededee;
+		border: none;
+		font-size: 15px;
+		font-family: '微软雅黑';
+		transition: background-color .3s;
+		box-sizing: border-box;
+		margin-left: 8px;
+		padding: 8px;
+	}
+	textarea:focus {
+		background-color: #fff;
+		border: 3px solid #ededee;
+		outline:none;
+	}
+	textarea::-webkit-input-placeholder {
+		opacity: .3;
+	}
+
+
+	.range-slider {
+	  width: 100%; }
+
+	.range-slider__range {
+	  -webkit-appearance: none;
+	  width: calc(100% - (73px));
+	  height: 10px;
+	  border-radius: 5px;
+	  background: #d7dcdf;
+	  outline: none;
+	  padding: 0;
+	  margin: 0; }
+	  .range-slider__range::-webkit-slider-thumb {
+	    -webkit-appearance: none;
+	    width: 20px;
+	    height: 20px;
+	    border-radius: 50%;
+	    background: #2c3e50;
+	    cursor: pointer;
+	    transition: background .15s ease-in-out; }
+	    .range-slider__range::-webkit-slider-thumb:hover {
+	      background: #1abc9c; }
+	  .range-slider__range:active::-webkit-slider-thumb {
+	    background: #1abc9c; }
+	  .range-slider__range::-moz-range-thumb {
+	    width: 20px;
+	    height: 20px;
+	    border: 0;
+	    border-radius: 50%;
+	    background: #2c3e50;
+	    cursor: pointer;
+	    transition: background .15s ease-in-out; }
+	    .range-slider__range::-moz-range-thumb:hover {
+	      background: #1abc9c; }
+	  .range-slider__range:active::-moz-range-thumb {
+	    background: #1abc9c; }
+
+	.range-slider__value {
+	  display: inline-block;
+	  position: relative;
+	  width: 60px;
+	  color: #fff;
+	  line-height: 20px;
+	  text-align: center;
+	  border-radius: 3px;
+	  background: #2c3e50;
+	  padding: 5px 10px;
+	  margin-left: 8px; }
+	  .range-slider__value:after {
+	    position: absolute;
+	    top: 8px;
+	    left: -7px;
+	    width: 0;
+	    height: 0;
+	    border-top: 7px solid transparent;
+	    border-right: 7px solid #2c3e50;
+	    border-bottom: 7px solid transparent;
+	    content: ''; }
+
+	::-moz-range-track {
+	  background: #d7dcdf;
+	  border: 0; }
+
+	input::-moz-focus-inner,
+	input::-moz-focus-outer {
+	  border: 0; }
 
 	</style>
 	
 </head>
 <body>
 	<span id="wheel"></span>
-	<textarea name="" id="" cols="30" rows="10"></textarea>
+	<textarea name="" id="" cols="38" rows="5" placeholder="输入内容："></textarea>
 	<div id="buttons">
-	  <a href="javascript:;" data-speed="speed30" data-bg="#FFE5BD">30 Km/h</a>
-	  <a href="javascript:;" data-speed="speed70" data-bg="#FFD490">70 Km/h</a>
-	  <a href="javascript:;" data-speed="speed100" data-bg="#FFC871">100 Km/h</a>
-	  <a href="javascript:;" data-speed="speed180" data-bg="#FFBB4D">180 Km/h</a>
+	  <a href="javascript:;" data-speed="speed30" data-bg="#FFE5BD">low</a>
+	  <a href="javascript:;" data-speed="speed100" data-bg="#FFC871">fast</a>
+	  <a href="javascript:;" data-speed="speed180" data-bg="#FFBB4D">rapid</a>
 	</div>
-	<a href="#" class="button">CLICK</a>
+	<div class="range-slider">
+	  <input class="range-slider__range" type="range" value="100" min="0" max="500">
+	  <span class="range-slider__value">0</span>
+	</div>
+	<a href="#" id="go">GO!!!</a>
+	<a href="#" id="stop">STOP!</a>
 	
 	<script src='js/jquery-3.1.1.min.js'></script>
 	<script src='js/main.js'></script>
