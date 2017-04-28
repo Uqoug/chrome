@@ -13,12 +13,26 @@ $('#buttons a').on('click', function(){
   }, 5)
 })
 
-
 $('#go').on('click', function(){
-  chrome.tabs.executeScript(null, {
-      code: '$(".b-btn").click()',
-      runAt: 'document_start'
-  });
+  function insertText(){
+    var text = $('#text').val();
+    chrome.tabs.executeScript(null, {
+        code: '$(".cs-textarea").val(' + text + ')',
+        runAt: 'document_start'
+    });
+  }
+  function send(){
+    chrome.tabs.executeScript(null, {
+        code: '$(".b-btn").click()',
+        runAt: 'document_start'
+    });
+  }
+  insertText();
+
+          //向tab发送请求
+    chrome.extension.sendMessage({cmd:'getmaxlength'}, function(response){
+      console.log(response);
+    });
 })
 
 var rangeSlider = function(){
@@ -40,3 +54,5 @@ var rangeSlider = function(){
 };
 
 rangeSlider();
+
+

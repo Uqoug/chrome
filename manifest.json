@@ -17,12 +17,17 @@
     },
     "permissions": [
         "activeTab",
-        "https://ajax.googleapis.com/"
+        "tabs"
     ],
     "content_scripts": [
         {
-            "matches": ["https://www.douyu.com/"],
-            "js": ["js/jquery-3.1.1.min.js"]  
+            "matches": ["https://www.douyu.com/6324", "*://*/*"],
+            "js": ["js/jquery-3.1.1.min.js", "js/content.js"]  
         }
-    ]
+    ],
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    }
 }
