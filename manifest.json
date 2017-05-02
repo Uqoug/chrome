@@ -16,18 +16,24 @@
         "default_popup": "popup.html"
     },
     "permissions": [
+        "*://*/*",
         "activeTab",
         "tabs"
     ],
     "content_scripts": [
         {
-            "matches": ["https://www.douyu.com/6324", "*://*/*"],
+            "matches": ["https://www.douyu.com/*"],
             "js": ["js/jquery-3.1.1.min.js", "js/content.js"]  
         }
     ],
-    "background": {
-        "scripts": [
-            "js/background.js"
-        ]
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+              "windows": "Ctrl+Q",
+              "mac": "Command+Q",
+              "chromeos": "Ctrl+Q",
+              "linux": "Ctrl+Q"
+            }
+        }
     }
 }

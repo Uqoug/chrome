@@ -13,14 +13,15 @@
 	body {
 	  transition: all 0.5s ease; 
 	  width: 300px;
-	  height: 280px;
+	  height: 290px;
 	}
 
 	#buttons {
 	  position: relative;
-	  margin: 2% 0 0 2%; }
+	  margin: 8px 10px; }
 
 	#buttons a {
+	  cursor: pointer;
 	  font-size: 12px;
 	  display: inline-block;
 	  padding: 5px;
@@ -36,8 +37,6 @@
 	#buttons a.selected {
 	  background: rgba(0, 0, 0, 0.3); }
 
-	#buttons a.selected {
-	  cursor: default; }
 
 	#wheel {
 	  margin: 10px 10px;
@@ -204,9 +203,9 @@
 	<span id="wheel"></span>
 	<textarea name="" id="text" cols="38" rows="5" placeholder="输入内容："></textarea>
 	<div id="buttons">
-	  <a href="javascript:;" data-speed="speed30" data-bg="#FFE5BD">low</a>
-	  <a href="javascript:;" data-speed="speed100" data-bg="#FFC871">fast</a>
-	  <a href="javascript:;" data-speed="speed180" data-bg="#FFBB4D">rapid</a>
+	  <a class="low" data-speed="speed30" data-bg="#FFE5BD">low</a>
+	  <a class="fast" data-speed="speed100" data-bg="#FFC871">fast</a>
+	  <a class="rapid" data-speed="speed180" data-bg="#FFBB4D">rapid</a>
 	</div>
 	<div class="range-slider">
 	  <input class="range-slider__range" type="range" value="100" min="0" max="500">

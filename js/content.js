@@ -1,8 +1,12 @@
-chrome.extension.onMessage.addListener(function(message, sender, sendResponse){
-    if(message.cmd == 'setmaxlength'){
-        console.log(message.maxlength);
-        var maxlength = message.maxlength;
-    }else if(message.cmd == 'getmaxlength'){
-      sendResponse("123");
+chrome.extension.onRequest.addListener(
+    function (request, sender, sendResponse) {
+        var maxlength = $(".cs-textarea").attr("maxlength") - 2;
+        var ready = '';
+        if (request.action == "Setmaxlength") {
+            sendResponse(maxlength);
+        }else if (request.action == "sendState") {
+            ready = $(".b-btn").text();
+            sendResponse(ready);
+        }
     }
-});
+);
