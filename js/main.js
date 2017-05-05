@@ -13,68 +13,45 @@ $('#buttons a').on('click', function(){
   }, 5)
 })
 
-var start = true;
+chrome.tabs.executeScript(null, {
+  file: 'js/content.js',
+  runAt: 'document_start'
+});
+var mode = 'once';
 $('#go').on('click', function(){
-  start = true;
+  var text = $('#text').val().trim();
   var num = $('.range-slider__value').text();
-  function insertText(){
-    var text = $('#text').val().trim();
-    if (text !== '') {
-      text = "'" + text 
-           + Math.floor(Math.random()*100) + "'";
-      chrome.tabs.executeScript(null, {
-          code: '$(".cs-textarea").val(' + text + ')',
-          runAt: 'document_start'
-      });
-    }
-  }
-  function send(){
-    if (text !== ''){
-      chrome.tabs.executeScript(null, {
-          code: '$(".b-btn").click()',
-          runAt: 'document_start'
-      });
-    }
-  }
-  function run(speed) {
-    chrome.tabs.getSelected(null, function (tab) {
-      chrome.tabs.sendRequest(tab.id, { action: "sendState" }, function (response) {
-        if (response == "发送") {
-          insertText();
-          send();
-          num = num - 1;
-          $('.range-slider__value').text(num);
-          if (num>0 && start) {
-            setTimeout(run, speed);
-          }
-        }else if (response !== "发送") {
-          if (num>0 && start) {
-            setTimeout(run, speed);
-          }
-        }
-      });
+  if (text !== '') {
+  chrome.tabs.executeScript(null, {
+      code: 'text ="' + text + '";'
+      + 'num =' + num + ';'
+      + 'start = true;'
     });
   }
   if (mode=='once') {
-    var oncetext = $('#text').val().trim();
-    if (oncetext !== '') {
-      oncetext = "'" + oncetext + "'";
+    if (text !== '') {
       chrome.tabs.executeScript(null, {
-          code: '$(".cs-textarea").val(' + oncetext + ')',
-          runAt: 'document_start'
+          code: "$('.cs-textarea').val(text);" + "send();"
       });
     }
-    send();
   }else if (mode=='low') {
-    run(25000);
+    chrome.tabs.executeScript(null, {
+        code: "run(25000);"
+    });
   }else if (mode=='fast') {
-    run(15000);
+    chrome.tabs.executeScript(null, {
+        code: "run(15000);"
+    });
   }else if (mode=='rapid') {
-    run(1000);
+    chrome.tabs.executeScript(null, {
+        code: "run(2000);"
+    });
   }
 })
 $("#stop").on("click", function(){
-  start = false;
+  chrome.tabs.executeScript(null, {
+      code: 'start = false;'
+  });
 })
 $('#text').on('keydown',function(e){
     if(e.keyCode!=13) return;
@@ -87,15 +64,14 @@ $(window).keydown(function(event){
   }
 })
 
-var mode = 'once';
 $(".low").on('click', function(){
-  mode = 'low';
+  mode = "low";
 })
 $(".fast").on('click', function(){
-  mode = 'fast';
+  mode = "fast";
 })
 $(".rapid").on('click', function(){
-  mode = 'rapid';
+  mode = "rapid";
 })
 
 
