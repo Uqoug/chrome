@@ -19,6 +19,10 @@ chrome.tabs.executeScript(null, {
 });
 var mode = 'once';
 $('#go').on('click', function(){
+  if (mode !== 'once') {
+    $('#go').attr('disable', 'disable');
+    $('#go').addClass('active');
+  }
   var text = $('#text').val().trim();
   var num = $('.range-slider__value').text();
   if (text !== '') {
@@ -50,8 +54,10 @@ $('#go').on('click', function(){
 })
 $("#stop").on("click", function(){
   chrome.tabs.executeScript(null, {
-      code: 'start = false;'
+      code: 'start = false;console.log(start)'
   });
+  $('#go').removeAttr('disable');
+  $('#go').removeClass('active');
 })
 $('#text').on('keydown',function(e){
     if(e.keyCode!=13) return;

@@ -13,7 +13,7 @@
 	body {
 	  transition: all 0.5s ease; 
 	  width: 300px;
-	  height: 290px;
+	  height: 330px;
 	}
 
 	#buttons {
@@ -77,7 +77,7 @@
 		display: block;
 		position: absolute;
 		right: 10px;
-		bottom: 12px;
+		bottom: 50px;
 		color: rgba(255, 255, 255, 1);
 		text-decoration: none;
 		background-color: rgba(219, 87, 51, 1);
@@ -100,7 +100,15 @@
 				    0px 3px 6px rgba(0, 0, 0, .9);
 		position: absolute;
 		right: 10px;
-		bottom: 8px;
+		bottom: 46px;
+	}
+	#go.active {
+		box-shadow: 0px 3px 0px rgba(219, 31, 5, 1),
+				    0px 3px 6px rgba(0, 0, 0, .9);
+		position: absolute;
+		right: 120px;
+		bottom: 46px;
+		cursor: not-allowed;
 	}
 	#go, #go:active {
 		right: 120px;
@@ -196,12 +204,19 @@
 	input::-moz-focus-outer {
 	  border: 0; }
 
+	#contact {
+		position: fixed;
+		bottom: 4px;
+		right: 20px;
+		text-align: right;
+		opacity: .8;
+	}
 	</style>
 	
 </head>
 <body>
 	<span id="wheel"></span>
-	<textarea name="" id="text" cols="38" rows="5" placeholder="输入内容："></textarea>
+	<textarea name="" id="text" cols="38" rows="5" maxlength="33" placeholder="输入内容："></textarea>
 	<div id="buttons">
 	  <a class="low" data-speed="speed30" data-bg="#FFE5BD">low</a>
 	  <a class="fast" data-speed="speed100" data-bg="#FFC871">fast</a>
@@ -213,6 +228,10 @@
 	</div>
 	<a href="#" id="go">GO!!!</a>
 	<a href="#" id="stop">STOP!</a>
+	<div id="contact">
+		<p>gq280391457@gmail.com</p>
+		<p>WX:saguoqu</p>
+	</div>
 	
 	<script src='js/jquery-3.1.1.min.js'></script>
 	<script src='js/main.js'></script>
