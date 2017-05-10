@@ -1,3 +1,11 @@
+var storage=window.localStorage;
+var mode = 'once';
+
+if (storage.getItem("button") === "on") {
+  $('#go').attr('disable', 'disable');
+  $('#go').addClass('active');
+}
+
 $('#buttons a').on('click', function(){
   $('a.selected').removeClass('selected');
   $('#buttons a').removeAttr('class');
@@ -17,11 +25,12 @@ chrome.tabs.executeScript(null, {
   file: 'js/content.js',
   runAt: 'document_start'
 });
-var mode = 'once';
+
 $('#go').on('click', function(){
   if (mode !== 'once') {
     $('#go').attr('disable', 'disable');
     $('#go').addClass('active');
+    storage.setItem("button", "on");
   }
   var text = $('#text').val().trim();
   var num = $('.range-slider__value').text();
@@ -58,6 +67,7 @@ $("#stop").on("click", function(){
   });
   $('#go').removeAttr('disable');
   $('#go').removeClass('active');
+  storage.setItem("button", "off");
 })
 $('#text').on('keydown',function(e){
     if(e.keyCode!=13) return;
