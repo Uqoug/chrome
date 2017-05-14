@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "wheelbarrow",
+    "name": "独轮车",
     "version": "1.0",
     "description": "wheelbarrow",
     "icons": {
@@ -22,18 +22,8 @@
     ],
     "content_scripts": [
         {
-            "matches": ["https://www.douyu.com/*"],
+            "matches": ["https://www.douyu.com/*", "http://www.douyu.com/*/*", "http://www.douyu.com/t/msi"],
             "js": ["js/jquery-3.1.1.min.js"]  
         }
-    ],
-    "commands": {
-      "_execute_browser_action": {
-        "suggested_key": {
-          "windows": "Ctrl+Q",
-          "mac": "Command+Q",
-          "chromeos": "Ctrl+Shift+U",
-          "linux": "Ctrl+Shift+J"
-        }
-      }
-    }
+    ]
 }
