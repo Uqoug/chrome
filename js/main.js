@@ -1,9 +1,10 @@
 var storage=window.localStorage;
 var mode = 'once';
+var go = $('#go');
 
 if (storage.getItem("button") === "on") {
-  $('#go').attr('disable', 'disable');
-  $('#go').addClass('active');
+  go.attr('disable', 'disable');
+  go.addClass('active');
 }
 
 $('#buttons a').on('click', function(){
@@ -18,18 +19,28 @@ $('#buttons a').on('click', function(){
     $('#wheel').addClass(function(){
       return speed;
     });
-  }, 5)
+  }, 50)
 })
+$('.switch label').on('click', function(){
+  $('#wheel').removeAttr('class');
+  var speed = $(this).attr('data-speed');
+  setTimeout(function(){
+    $('#wheel').addClass(function(){
+      return speed;
+    });
+  }, 50)
+})
+
 
 chrome.tabs.executeScript(null, {
   file: 'js/content.js',
   runAt: 'document_start'
 });
 
-$('#go').on('click', function(){
+go.on('click', function(){
   if (mode !== 'once') {
-    $('#go').attr('disable', 'disable');
-    $('#go').addClass('active');
+    go.attr('disable', 'disable');
+    go.addClass('active');
     storage.setItem("button", "on");
   }
   var text = $('#text').val().trim();
@@ -61,14 +72,16 @@ $('#go').on('click', function(){
     });
   }
 })
+
 $("#stop").on("click", function(){
   chrome.tabs.executeScript(null, {
       code: 'start = false;console.log(start)'
   });
-  $('#go').removeAttr('disable');
-  $('#go').removeClass('active');
+  go.removeAttr('disable');
+  go.removeClass('active');
   storage.setItem("button", "off");
 })
+
 $('#text').on('keydown',function(e){
     if(e.keyCode!=13) return;
     e.preventDefault();
@@ -76,10 +89,13 @@ $('#text').on('keydown',function(e){
 
 $(window).keydown(function(event){
   if (event.keyCode == '13') {
-    $("#go").click();
+    go.click();
   }
 })
 
+$(".once").on('click', function(){
+  mode = "once";
+})
 $(".low").on('click', function(){
   mode = "low";
 })
@@ -95,14 +111,11 @@ var rangeSlider = function(){
   var slider = $('.range-slider'),
       range = $('.range-slider__range'),
       value = $('.range-slider__value');
-    
   slider.each(function(){
-
     value.each(function(){
       var value = $(this).prev().attr('value');
       $(this).html(value);
     });
-
     range.on('input', function(){
       $(this).next(value).html(this.value);
     });
