@@ -200,8 +200,8 @@
 	  background: #d7dcdf;
 	  border: 0; }
 
-	input::-moz-focus-inner,
-	input::-moz-focus-outer {
+	.range-slider__range::-moz-focus-inner,
+	.range-slider__range::-moz-focus-outer {
 	  border: 0; }
 
 	#contact {
@@ -211,26 +211,91 @@
 		text-align: right;
 		opacity: .8;
 	}
+
+	.switch {
+	  position: relative;
+	  width: 200px;
+	  margin-top: 10px;
+	  margin-bottom: 15px;
+	  font-family: verdana; }
+	  .switch:before {
+	    content: '  ';
+	    position: absolute;
+	    top: 6px;
+	    left: 8px;
+	    z-index: -1;
+	    width: 170px;
+	    height: 20px;
+	    background: #000;
+	    border-radius: 30px; }
+	  .switch__label {
+	    display: inline-block;
+	    font-size: 15px;
+	    padding: 5px 0px;
+	    margin: 0px 10px;
+	    text-align: center;
+	    color: #999;
+	    cursor: pointer;
+	    transition: color 200ms ease-out; }
+	   .switch__label:nth-of-type(1){
+	   	margin-left: 23px;
+	   }
+	    .switch__label:hover {
+	      color: white; }
+	  .switch__indicator {
+	    width: 30px;
+	    height: 30px;
+	    position: absolute;
+	    top: 0px;
+	    left: 0;
+	    background: blue;
+	    border-radius: 50%;
+	    transition: transform 600ms cubic-bezier(0.02, 0.94, 0.09, 0.97), background 300ms cubic-bezier(0.17, 0.67, 0.14, 1.03);
+	    transform: translate3d(15px, 0, 0); }
+	  .switch input#one:checked ~ .switch__indicator {
+	    background: #d7dcdf;
+	    transform: translate3d(15px, 0, 0); }
+	  .switch input#two:checked ~ .switch__indicator {
+	    background: #1abc9c;
+	    transform: translate3d(55px, 0, 0); }
+	  .switch input#three:checked ~ .switch__indicator {
+	    background: PaleVioletRed;
+	    transform: translate3d(95px, 0, 0); }
+	  .switch input#four:checked ~ .switch__indicator {
+        background: #E74C3C;
+        transform: translate3d(135px, 0, 0); }
+	  .switch input[type="radio"]:not(:checked), .switch input[type="radio"]:checked {
+	    display: none; }
 	</style>
 	
 </head>
 <body>
 	<span id="wheel"></span>
 	<textarea name="" id="text" cols="38" rows="5" maxlength="33" placeholder="输入内容："></textarea>
-	<div id="buttons">
-	  <a class="low" data-speed="speed30" data-bg="#FFE5BD">low</a>
-	  <a class="fast" data-speed="speed100" data-bg="#FFC871">fast</a>
-	  <a class="rapid" data-speed="speed180" data-bg="#FFBB4D">rapid</a>
+
+	 <div class="switch">
+	  <input name="switch" id="one" type="radio" checked/>
+	  <label for="one" class="switch__label once">单</label>
+	  <input name="switch" id="two" type="radio" />
+	  <label for="two" class="switch__label low" data-speed="speed30">慢</label>
+	  <input name="switch" id="three" type="radio" />
+	  <label for="three" class="switch__label fast" data-speed="speed100">中</label>
+	  <input name="switch" id="four" type="radio" />
+	  <label for="four" class="switch__label rapid" data-speed="speed180">快</label>
+	  <div class="switch__indicator" /></div>
 	</div>
+
 	<div class="range-slider">
 	  <input class="range-slider__range" type="range" value="100" min="0" max="500">
 	  <span class="range-slider__value">0</span>
 	</div>
-	<a href="#" id="go">GO!!!</a>
+
+	<a href="#" id="go" title="快捷键Enter！">GO!!!</a>
 	<a href="#" id="stop">STOP!</a>
+
 	<div id="contact">
 		<p>gq280391457@gmail.com</p>
-		<p>WX:saguoqu</p>
+		<p>wechat:3105007553</p>
 	</div>
 	
 	<script src='js/jquery-3.1.1.min.js'></script>

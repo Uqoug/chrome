@@ -1,8 +1,14 @@
 {
     "manifest_version": 2,
+<<<<<<< HEAD
     "name": "独轮车",
     "version": "1.0.0.2",
     "description": "抽象独轮车",
+=======
+    "name": "抽象独轮车",
+    "version": "1.0.1.0",
+    "description": "wheelbarrow",
+>>>>>>> origin/master
     "icons": {
         "16": "images/icon16.png",
         "48": "images/icon48.png"
@@ -22,8 +28,13 @@
     ],
     "content_scripts": [
         {
+<<<<<<< HEAD
             "matches": ["https://www.douyu.com/*", "http://www.douyu.com/*/*", "http://www.douyu.com/t/msi"],
             "js": ["js/jquery-3.1.1.min.js"]  
+=======
+            "matches": ["https://www.douyu.com/*", "http://www.douyu.com/*"],
+            "js": ["js/jquery-3.1.1.min.js", "js/content.js"]  
+>>>>>>> origin/master
         }
     ]
 }
