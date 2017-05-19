@@ -75,7 +75,7 @@ go.on('click', function(){
 
 $("#stop").on("click", function(){
   chrome.tabs.executeScript(null, {
-      code: 'start = false;console.log(start)'
+      code: 'start = false;'
   });
   go.removeAttr('disable');
   go.removeClass('active');

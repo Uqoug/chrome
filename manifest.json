@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "抽象独轮车",
-    "version": "1.0.1.0",
+    "version": "1.0.1.5",
     "description": "wheelbarrow",
     "icons": {
         "16": "images/icon16.png",
@@ -22,8 +22,18 @@
     ],
     "content_scripts": [
         {
-            "matches": ["https://www.douyu.com/*", "http://www.douyu.com/*/*", "http://www.douyu.com/t/msi"],
-            "js": ["js/jquery-3.1.1.min.js"]  
+            "matches": ["https://www.douyu.com/*", "http://www.douyu.com/t/*", "http://www.douyu.com/6324"],
+            "js": ["js/jquery-3.1.1.min.js", "js/content.js"]  
         }
-    ]
+    ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+              "windows": "Ctrl+Q",
+              "mac": "Command+Q",
+              "chromeos": "Ctrl+Shift+U",
+              "linux": "Ctrl+Shift+J"
+            }
+        }
+    }
 }

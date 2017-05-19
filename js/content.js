@@ -34,9 +34,16 @@ function run(speed) {
 function Gift_trun() {
   var shie = $("#js-shie-gift");
   $(document).ready(function(){
-    if (shie.attr("class") == "shie") {
-      $("#shie-switch").click();
-    }
+    setTimeout(function(){
+        if (shie.attr("class") == "shie"){
+            $("#shie-switch").click();
+        }
+    },3000);
   });
 }
 Gift_trun();
+
+
+//除广告
+var ad = $("#js-live-room-recommend,.act520-lights,.action-list,.sq-ad")
+ad.remove();
