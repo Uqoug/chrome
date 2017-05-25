@@ -33,17 +33,23 @@ function run(speed) {
 
 function Gift_trun() {
   var shie = $("#js-shie-gift");
+  var ad = $("#js-chat-right-ad,.tab-body:eq(1),.room-ad-bottom,.room-ad-video-down,.js-chat-right-ad,.room-ad-top,.chat-ad,#starwall-520-show,#js-chat-notice,#js-live-room-recommend,.act520-lights,.action-list,.sq-ad");
   $(document).ready(function(){
+    setTimeout(function(){
+        //除广告
+        ad.remove();
+    },1000);
+    setTimeout(function(){
+        ad.remove();
+    },4000);
     setTimeout(function(){
         if (shie.attr("class") == "shie"){
             $("#shie-switch").click();
         }
-    },3000);
+        ad.remove();
+    },8000);
   });
 }
-Gift_trun();
+$(document).ready(Gift_trun());
 
 
-//除广告
-var ad = $("#js-live-room-recommend,.act520-lights,.action-list,.sq-ad")
-ad.remove();
