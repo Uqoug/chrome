@@ -17,7 +17,7 @@ function send(){
 }
 function run(speed) {
   var ready = '';
-  var again = setInterval(function () {
+  var again1 = setInterval(function () {
     ready = $(".b-btn").text();
     if (ready == "发送") {
       if (start && num>0) {
@@ -25,31 +25,25 @@ function run(speed) {
         setTimeout(send, 520);
         num = num - 1;
       }else if (num<=0 && !start) {
-        clearInterval(again);
+        clearInterval(again1);
       }
     }
   }, speed);
 }
 
-function Gift_trun() {
-  var shie = $("#js-shie-gift");
+function close_gift() {
+  var shie = $("#shie-switch");
   var ad = $("#js-chat-right-ad,.tab-body:eq(1),.room-ad-bottom,.room-ad-video-down,.js-chat-right-ad,.room-ad-top,.chat-ad,#starwall-520-show,#js-chat-notice,#js-live-room-recommend,.act520-lights,.action-list,.sq-ad");
-  $(document).ready(function(){
-    setTimeout(function(){
-        //除广告
-        ad.remove();
-    },1000);
-    setTimeout(function(){
-        ad.remove();
-    },4000);
-    setTimeout(function(){
-        if (shie.attr("class") == "shie"){
-            $("#shie-switch").click();
-        }
-        ad.remove();
-    },8000);
-  });
+  function close() {
+    shie.click();
+    ad.remove();
+    $(".shie-input[data-shield-type='allGift']").click();
+  }
+  if (($(".vip em").text() !== '') && (shie.attr("class") == "shie-input")) {
+    setTimeout(close, 2000);
+    clearInterval(again2);
+  }
 }
-$(document).ready(Gift_trun());
-
-
+var again2 = setInterval(function () {
+  close_gift();
+}, 1000);
